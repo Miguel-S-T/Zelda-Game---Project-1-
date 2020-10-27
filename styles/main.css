@@ -1,0 +1,28 @@
+body {
+    padding: 20px;
+   ;
+  }
+
+.game-intro {
+    text-align: center;
+}
+body button {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(21, 146, 21);
+    color: #fff;
+    padding: 10px 30px;
+    border: 50;
+    box-shadow: 0;
+    border-radius: 0px;
+    margin-bottom: 10px;
+  }
+
+#game-board {
+    background-image: url("../img/grass2.gif");
+    background-size: 150%;
+    float: right;
+    margin-right: 20em;
+   
+}
+
