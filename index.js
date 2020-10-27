@@ -85,7 +85,7 @@ function updateCanvas() {
             if (currentGame.obstacles.length > 0 && currentGame.archer.shots.length > 0) {
               
                 for(let k = 0; k < currentGame.obstacles.length -1; k++){ // COLLISION SHOTS WITH ENEMIES // SEMPRE QUE QUISER INDEXAR ITEMS NO ARRAY QUE ESTÁS A UTILIZAR A PRÓPRIA LENGTH DELE NO FOR LOOP TEMOS QUE USAR O -1.
-                    for (let l = 0; l < currentGame.archer.shots.length -1; l++) {
+                    for (let l = 0; l < currentGame.archer.shots.length; l++) {
                        
                         if (detectCollisionOfShots(currentGame.obstacles[k], currentGame.archer.shots[l])) {
                             currentGame.obstacles.splice(k, 1);
