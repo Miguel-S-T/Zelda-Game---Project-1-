@@ -13,27 +13,39 @@ body {
     position: relative;
     float: right;
     margin-right: 24em;
-    background-image: url("/img/zelda\ menu-2-cut-1.gif");
+    background-image: url("/img/zelda\ menu-2.gif");
     width: 700px;
     height: 500px;
     background-size: 90%;
     background-position: center;
-    
+}
+#game-over-img {
+  position: relative;
+    float: right;
+    margin-right: 24em;
+    background-image: url("/img/game-over\ com\ link\ .png");
+    width: 700px;
+    height: 500px;
+    background-size: 130%;
+    background-position: center;
 }
 #start-button {
-    position: absolute;
+    position: absolute; 
     float: right;
     right: 525px;
-    top: 360px;
+    top: 375px;
+    margin-right: -13px;
+    margin-left: 145px;
     text-align: center;
-    font-size: 32px;
+    font-size: 33px;
     font-family: "arcade";
     color: black;
-    padding: 0px 30px;
+    padding: 1px 30px;
     background-color: cyan;
     border: 1;
+    border-color: rgb(162, 252, 252);
     border-style: double;
-    border-radius: 0px;
+    border-radius: 10px;
     margin-bottom: 10px;
   }
   @font-face {
@@ -45,19 +57,37 @@ body {
     background-size: 150%;
     float: right;
     margin-right: 20em;
-   
+}
+
+#play-again {
+  position: absolute;
+    float: right;
+    right: 600px;
+    top: 350px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "arcade";
+    color: #8ab7c5;
+    padding: 0px 30px;
+    background-color:#8929e9;
+    border: 1;
+    border-color:#7677d3;
+    border-style: double;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 #score-div {
     position: absolute;
-    float: center;
+    text-align: center;
+    float: right;
     font-size: 18px;
     font-family: "arcade";
     color: #a8fd1f;
-    padding: 0px 40px;
-    background-color: rgb(41, 151, 41);
+    padding: 0px 30px ;
+    background-color: rgb(81, 151, 41);
     border: 1;
-    border-radius: 0px;
+    border-radius: 20px;
     left: 672px;
     top: 540px;
     margin-bottom: 10px;

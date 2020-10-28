@@ -6,12 +6,17 @@ document.getElementById('game-board').style.display = "none";
 document.getElementById('start-button').style.display = 'inline';
 document.getElementById('start-img').style.display = 'inline';
 document.getElementById('score-div').style.display = 'none';
+document.getElementById('play-again').style.display = 'none';
+document.getElementById('game-over-img').style.display = 'none';
 
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
- document.getElementById('start-button').onclick = () => { //STARTS GAME ON CLICK
+document.getElementById('start-button').onclick = () => { //STARTS GAME ON CLICK
+    startGame();
+}
+document.getElementById('play-again').onclick = () => { // RESTARTS GAME ON CLICK
     startGame();
 }
 
@@ -23,9 +28,11 @@ function resetGame() {
     obstaclesFrequency = 0;
     document.getElementById('score').innerHTML = currentGame.score;
     document.getElementById('game-board').style.display = 'none';
-    document.getElementById('start-button').style.display = 'inline';
-    document.getElementById('start-img').style.display = 'inline';
+    document.getElementById('start-button').style.display = 'none';
+    document.getElementById('start-img').style.display = 'none';
     document.getElementById('score-div').style.display = 'none';
+    document.getElementById('play-again').style.display = 'inline';
+    document.getElementById('game-over-img').style.display = 'inline';
     document.removeEventListener('keydown', keyPressed)
 }
 
@@ -35,6 +42,8 @@ function startGame() {
     document.getElementById('start-button').style.display = 'none';
     document.getElementById('start-img').style.display = 'none';
     document.getElementById('score-div').style.display = 'inline';
+    document.getElementById('play-again').style.display = 'none';
+    document.getElementById('game-over-img').style.display = 'none';
     currentGame = new Game();
     currentGame.isGameRunning = true;
     currentArcher = new Archer();
@@ -103,8 +112,7 @@ function updateCanvas() {
                 currentGame.obstacles[i].x -= 0.6; // VELOCIDADE DOS INIMIGOS
                 currentGame.obstacles[i].drawObstacle();
                 if (currentGame.obstacles[i].x <= 0 || detectCollision(currentGame.obstacles[i])) {
-                    resetGame()
-                    alert("GAME OVER!")
+                    resetGame();    // STOPS AND RESTARTS THE GAME 
                 }  
                
                 
@@ -123,9 +131,8 @@ function updateCanvas() {
             } 
         }
 
-if(currentGame.isGameRunning) {
-
-    requestAnimationFrame(updateCanvas);
-}
+if(currentGame.isGameRunning) {     
+    requestAnimationFrame(updateCanvas); // RUNS THE GAME
+} 
     
 }
