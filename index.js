@@ -55,7 +55,7 @@ function startGame() {
 }
 }
 
-function keyPressed(e) {
+function keyPressed(e) {  // ACTIVATE KEYBOARD KEYS - MOVE ARCHER
     let whereToGo = e.keyCode
     currentGame.archer.moveArcher(whereToGo)
 }
@@ -78,6 +78,7 @@ function detectCollisionOfShots(obstacle, shot) {  // SHOTS COLLISION
 }
 
 let obstaclesFrequency = 0;
+let obstaclesFrequency2 = 0;
 let shotsFrequency = 0;
 
 function updateCanvas() {
@@ -94,7 +95,7 @@ function updateCanvas() {
         }
 
             if (currentGame.obstacles.length > 0 && currentGame.archer.shots.length > 0) {
-              
+
                 for(let k = 0; k < currentGame.obstacles.length -1; k++){ // COLLISION SHOTS WITH ENEMIES // SEMPRE QUE QUISER INDEXAR ITEMS NO ARRAY QUE ESTÁS A UTILIZAR A PRÓPRIA LENGTH DELE NO FOR LOOP TEMOS QUE USAR O -1.
                     for (let l = 0; l < currentGame.archer.shots.length; l++) {
                        

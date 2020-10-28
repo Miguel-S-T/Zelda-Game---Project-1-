@@ -20,7 +20,7 @@ body {
     background-image: url("/img/game-over\ com\ link\ 2.png");
     width: 700px;
     height: 500px;
-    background-size: 130%;
+    background-size: 150%;
     background-position: center;
 }
 #start-button {
@@ -57,7 +57,7 @@ body {
   position: absolute;
     float: right;
     right: 590px;
-    top: 354px;
+    top: 365px;
     text-align: center;
     font-size: 25px;
     font-family: "arcade";
