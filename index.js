@@ -8,6 +8,9 @@ document.getElementById('start-img').style.display = 'inline';
 document.getElementById('score-div').style.display = 'none';
 document.getElementById('play-again').style.display = 'none';
 document.getElementById('game-over-img').style.display = 'none';
+document.getElementById('winner').style.display = 'none';
+document.getElementById('play-again2').style.display = 'none';
+document.getElementById('win-game-img').style.display = 'none';
 
 
 const canvas = document.getElementById("canvas");
@@ -18,6 +21,28 @@ document.getElementById('start-button').onclick = () => { //STARTS GAME ON CLICK
 }
 document.getElementById('play-again').onclick = () => { // RESTARTS GAME ON CLICK
     startGame();
+}
+document.getElementById('play-again2').onclick = () => { // RESTARTS GAME ON CLICK
+    startGame();
+}
+
+function winGame() {
+    currentGame.archer = {};
+    currentGame.obstacles = [];
+    currentGame.score = 0;
+    currentGame.isGameRunning = false;
+    obstaclesFrequency = 0;
+    document.getElementById('score').innerHTML = currentGame.score;
+    document.getElementById('game-board').style.display = 'none';
+    document.getElementById('start-button').style.display = 'none';
+    document.getElementById('start-img').style.display = 'none';
+    document.getElementById('score-div').style.display = 'none';
+    document.getElementById('play-again').style.display = 'none';
+    document.getElementById('game-over-img').style.display = 'none';
+    document.getElementById('win-game-img').style.display = "block"
+    document.getElementById('winner').style.display = 'inline';
+    document.getElementById('play-again2').style.display = 'inline';
+    document.removeEventListener('keydown', keyPressed)
 }
 
 function resetGame() {
@@ -33,6 +58,9 @@ function resetGame() {
     document.getElementById('score-div').style.display = 'none';
     document.getElementById('play-again').style.display = 'inline';
     document.getElementById('game-over-img').style.display = 'inline';
+    document.getElementById('winner').style.display = 'none';
+    document.getElementById('play-again2').style.display = 'none';
+    document.getElementById('win-game-img').style.display = 'none'; 
     document.removeEventListener('keydown', keyPressed)
 }
 
@@ -44,6 +72,9 @@ function startGame() {
     document.getElementById('score-div').style.display = 'inline';
     document.getElementById('play-again').style.display = 'none';
     document.getElementById('game-over-img').style.display = 'none';
+    document.getElementById('winner').style.display = 'none';
+    document.getElementById('play-again2').style.display = 'none';
+    document.getElementById('win-game-img').style.display = 'none'; 
     currentGame = new Game();
     currentGame.isGameRunning = true;
     currentArcher = new Archer();
@@ -60,7 +91,6 @@ function keyPressed(e) {  // ACTIVATE KEYBOARD KEYS - MOVE ARCHER
     currentGame.archer.moveArcher(whereToGo)
 }
 
-
 function detectCollision(obstacle) {  // ENEMY COLLISION 
     return (currentGame.archer.y > obstacle.y - obstacle.height 
         && currentGame.archer.x + currentGame.archer.width > obstacle.x 
@@ -73,8 +103,6 @@ function detectCollisionOfShots(obstacle, shot) {  // SHOTS COLLISION
             && shot.y < obstacle.y + obstacle.height
             && shot.y + shot.height > obstacle.y 
             && shot.x < obstacle.x + obstacle.width);
-    
-
 }
 
 let obstaclesFrequency = 0;
@@ -85,8 +113,13 @@ function updateCanvas() {
         ctx.clearRect(0, 0, 700, 500);
         currentGame.archer.drawArcher();
         if(currentGame.isGameRunning) {
+
+            // WIN GAME 
+            if (currentGame.score === 20) {
+                winGame();
+            }
             // OBSTACLE 2 
-            if (currentGame.score >= 3) {  
+            if (currentGame.score >= 2) {  
                 obstaclesFrequency2++;
                 if (obstaclesFrequency2 % 100 === 1) { // AQUI (% 100) MUDAMOS A QUANTIDADE DOS INIMIGOS
                 let randomObstacle2X = 700;

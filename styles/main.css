@@ -1,6 +1,5 @@
 body {
     padding: 20px;
-   ;
   }
 
 #start-img {
@@ -47,8 +46,8 @@ body {
     src: url("/img/ARCADECLASSIC.TTF");
   }
 #game-board {
-    background-image: url("../img/grass2.gif");
-    background-size: 150%;
+    background-image: url("/img/grass2.gif");
+    background-size: 180%;
     float: right;
     margin-right: 20em;
 }
@@ -65,6 +64,24 @@ body {
     padding: 0px 30px;
     background-color:#8929e9;
     border: 10px;
+    border-color:#7677d3;
+    border-style: double;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#play-again2 {
+  position: absolute;
+    float: right;
+    right: 680px;
+    top: 480px;
+    text-align: center;
+    font-size: 16px;
+    font-family: "arcade";
+    color: #8ab7c5;
+    padding: 0px 30px;
+    background-color:#8929e9;
+    border: 8px;
     border-color:#7677d3;
     border-style: double;
     border-radius: 10px;
@@ -88,3 +105,28 @@ body {
     margin-bottom: 10px;
 }
 
+#win-game-img {
+  float: right;
+  margin-right: 24em;
+  background-image: url("/img/winner\ .png");
+  width: 700px;
+  height: 500px;
+  background-size: 100%;
+  background-position: center; 
+
+}
+
+h1 {
+  position: absolute;
+    text-align: center;
+    border: 0px;
+    border-style: double;
+    border-radius: 10px;
+    font-size: 80px;
+    font-family: "arcade";
+    color: #7677d3;
+    padding: 10px 30px ;
+    left: 500px;
+    bottom: 560px;
+    margin-bottom: 10px;
+}
