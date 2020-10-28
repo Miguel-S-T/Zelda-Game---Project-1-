@@ -4,12 +4,14 @@ let currentArcher;
 
 document.getElementById('game-board').style.display = "none";
 document.getElementById('start-button').style.display = 'inline';
+document.getElementById('start-img').style.display = 'inline';
+document.getElementById('score-div').style.display = 'none';
 
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
- document.getElementById('start-button').onclick = () => {
+ document.getElementById('start-button').onclick = () => { //STARTS GAME ON CLICK
     startGame();
 }
 
@@ -22,6 +24,8 @@ function resetGame() {
     document.getElementById('score').innerHTML = currentGame.score;
     document.getElementById('game-board').style.display = 'none';
     document.getElementById('start-button').style.display = 'inline';
+    document.getElementById('start-img').style.display = 'inline';
+    document.getElementById('score-div').style.display = 'none';
     document.removeEventListener('keydown', keyPressed)
 }
 
@@ -29,6 +33,8 @@ function resetGame() {
 function startGame() {
     document.getElementById('game-board').style.display = 'block';
     document.getElementById('start-button').style.display = 'none';
+    document.getElementById('start-img').style.display = 'none';
+    document.getElementById('score-div').style.display = 'inline';
     currentGame = new Game();
     currentGame.isGameRunning = true;
     currentArcher = new Archer();
@@ -68,10 +74,6 @@ let shotsFrequency = 0;
 function updateCanvas() {
         ctx.clearRect(0, 0, 700, 500);
         currentGame.archer.drawArcher();
-
-        
-        
-
         if(currentGame.isGameRunning) {
             obstaclesFrequency++;
             if (obstaclesFrequency % 100 === 1) { // AQUI (% 100) MUDAMOS A QUANTIDADE DOS INIMIGOS
@@ -113,8 +115,6 @@ function updateCanvas() {
                 }
                 
             }
-
-
             if (currentGame.isGameRunning && currentGame.archer.shots !== undefined) {
                 for(let i = 0; i < currentGame.archer.shots.length; i++) { 
                     currentGame.archer.shots[i].x += 4; // VELOCIDADE DOS SHOTS

@@ -3,26 +3,63 @@ body {
    ;
   }
 
-.game-intro {
-    text-align: center;
+/*#menu {
+  width: 700px;
+  height: 500px;
+  align-items: center;
 }
-body button {
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(21, 146, 21);
-    color: #fff;
-    padding: 10px 30px;
-    border: 50;
-    box-shadow: 0;
+*/
+#start-img {
+    position: relative;
+    float: right;
+    margin-right: 24em;
+    background-image: url("/img/zelda\ menu-2-cut-1.gif");
+    width: 700px;
+    height: 500px;
+    background-size: 90%;
+    background-position: center;
+    
+}
+#start-button {
+    position: absolute;
+    float: right;
+    right: 525px;
+    top: 360px;
+    text-align: center;
+    font-size: 32px;
+    font-family: "arcade";
+    color: black;
+    padding: 0px 30px;
+    background-color: cyan;
+    border: 1;
+    border-style: double;
     border-radius: 0px;
     margin-bottom: 10px;
   }
-
+  @font-face {
+    font-family: "arcade";
+    src: url("/img/ARCADECLASSIC.TTF");
+  }
 #game-board {
     background-image: url("../img/grass2.gif");
     background-size: 150%;
     float: right;
     margin-right: 20em;
    
+}
+
+#score-div {
+    position: absolute;
+    float: center;
+    font-size: 18px;
+    font-family: "arcade";
+    color: #a8fd1f;
+    padding: 0px 40px;
+    background-color: rgb(41, 151, 41);
+    border: 1;
+    border-radius: 0px;
+    left: 672px;
+    top: 540px;
+    margin-bottom: 10px;
 }
 
