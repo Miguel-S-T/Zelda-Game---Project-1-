@@ -3,12 +3,6 @@ body {
    ;
   }
 
-/*#menu {
-  width: 700px;
-  height: 500px;
-  align-items: center;
-}
-*/
 #start-img {
     position: relative;
     float: right;
@@ -23,7 +17,7 @@ body {
   position: relative;
     float: right;
     margin-right: 24em;
-    background-image: url("/img/game-over\ com\ link\ .png");
+    background-image: url("/img/game-over\ com\ link\ 2.png");
     width: 700px;
     height: 500px;
     background-size: 130%;
@@ -42,9 +36,9 @@ body {
     color: black;
     padding: 1px 30px;
     background-color: cyan;
-    border: 1;
+    border: 5px;
     border-color: rgb(162, 252, 252);
-    border-style: double;
+    border-style: solid;
     border-radius: 10px;
     margin-bottom: 10px;
   }
@@ -62,15 +56,15 @@ body {
 #play-again {
   position: absolute;
     float: right;
-    right: 600px;
-    top: 350px;
+    right: 590px;
+    top: 354px;
     text-align: center;
     font-size: 25px;
     font-family: "arcade";
     color: #8ab7c5;
     padding: 0px 30px;
     background-color:#8929e9;
-    border: 1;
+    border: 10px;
     border-color:#7677d3;
     border-style: double;
     border-radius: 10px;
@@ -85,8 +79,9 @@ body {
     font-family: "arcade";
     color: #a8fd1f;
     padding: 0px 30px ;
-    background-color: rgb(81, 151, 41);
-    border: 1;
+    background-color:#8929e9;
+    border: 10px;
+    border-style: double;
     border-radius: 20px;
     left: 672px;
     top: 540px;
