@@ -4,10 +4,10 @@ class Archer {
         this.y = 0;
         this.width = 42;
         this.height = 42; 
-        this.img = "/img/archer_3_paço_right_p_tirar_fundo-removebg-preview.png";
-        this.shots = [];
+        this.img = "/img/archer_3_paço_left_p_tirar_fundo-removebg-preview.png";
         this.animationToggle = 0;
-        this.img2 = "/img/archer_3_paço_left_p_tirar_fundo-removebg-preview.png";
+        this.img2 = "/img/archer_3_paço_right_p_tirar_fundo-removebg-preview.png";
+        this.shots = [];
     }
     drawArcher() {
         const archerImg = new Image();
