@@ -10,7 +10,8 @@ drawObstacle() {
     const enemyImg = new Image();
     enemyImg.src = this.img;
     ctx.drawImage(enemyImg, this.x, this.y, this.width, this.height);
-  /*  ctx.fillStyle = "black";
+  /*
+    ctx.fillStyle = "black";
     ctx.clearRect(this.x, this.y, this.width, this.height);
     ctx.fillRect(this.x, this.y, this.width, this.height);
 */
@@ -31,7 +32,8 @@ this.img = "/img/enemy-2_RED_-removebg-preview (1).png";
         const enemyImg2 = new Image();
         enemyImg2.src = this.img;
         ctx.drawImage(enemyImg2, this.x, this.y, this.width, this.height)
-     /*   ctx.fillStyle = "black";
+     /* 
+        ctx.fillStyle = "black";
         ctx.clearRect(this.x, this.y, this.width, this.height);
         ctx.fillRect(this.x, this.y, this.width, this.height);
         */

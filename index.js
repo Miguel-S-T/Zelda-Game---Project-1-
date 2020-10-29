@@ -11,7 +11,8 @@ document.getElementById('game-over-img').style.display = 'none';
 document.getElementById('winner').style.display = 'none';
 document.getElementById('play-again2').style.display = 'none';
 document.getElementById('win-game-img').style.display = 'none';
-
+document.getElementById('instructions').style.display = 'none';
+document.getElementById('level-div').style.display = 'none';
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -30,9 +31,11 @@ function winGame() {
     currentGame.archer = {};
     currentGame.obstacles = [];
     currentGame.score = 0;
+    currentGame.level = 0;
     currentGame.isGameRunning = false;
     obstaclesFrequency = 0;
     document.getElementById('score').innerHTML = currentGame.score;
+    document.getElementById('level-numbers').innerHTML = currentGame.level;
     document.getElementById('game-board').style.display = 'none';
     document.getElementById('start-button').style.display = 'none';
     document.getElementById('start-img').style.display = 'none';
@@ -42,6 +45,8 @@ function winGame() {
     document.getElementById('win-game-img').style.display = "block"
     document.getElementById('winner').style.display = 'inline';
     document.getElementById('play-again2').style.display = 'inline';
+    document.getElementById('instructions').style.display = 'none';
+    document.getElementById('level-div').style.display = 'none';
     document.removeEventListener('keydown', keyPressed)
 }
 
@@ -49,9 +54,11 @@ function resetGame() {
     currentGame.archer = {};
     currentGame.obstacles = [];
     currentGame.score = 0;
+    currentGame.level = 0;
     currentGame.isGameRunning = false;
     obstaclesFrequency = 0;
     document.getElementById('score').innerHTML = currentGame.score;
+    document.getElementById('level-numbers').innerHTML = currentGame.level;
     document.getElementById('game-board').style.display = 'none';
     document.getElementById('start-button').style.display = 'none';
     document.getElementById('start-img').style.display = 'none';
@@ -60,7 +67,9 @@ function resetGame() {
     document.getElementById('game-over-img').style.display = 'inline';
     document.getElementById('winner').style.display = 'none';
     document.getElementById('play-again2').style.display = 'none';
-    document.getElementById('win-game-img').style.display = 'none'; 
+    document.getElementById('win-game-img').style.display = 'none';
+    document.getElementById('instructions').style.display = 'none'; 
+    document.getElementById('level-div').style.display = 'none';
     document.removeEventListener('keydown', keyPressed)
 }
 
@@ -74,7 +83,9 @@ function startGame() {
     document.getElementById('game-over-img').style.display = 'none';
     document.getElementById('winner').style.display = 'none';
     document.getElementById('play-again2').style.display = 'none';
-    document.getElementById('win-game-img').style.display = 'none'; 
+    document.getElementById('win-game-img').style.display = 'none';
+    document.getElementById('instructions').style.display = 'inline';
+    document.getElementById('level-div').style.display = 'inline'; 
     currentGame = new Game();
     currentGame.isGameRunning = true;
     currentArcher = new Archer();
@@ -104,6 +115,12 @@ function detectCollisionOfShots(obstacle, shot) {  // SHOTS COLLISION
             && shot.y + shot.height > obstacle.y 
             && shot.x < obstacle.x + obstacle.width);
 }
+function levelUp() {
+    if (currentGame.score % 5 === 0 && currentGame.score != 0) {
+        currentGame.level++;
+        document.getElementById("level-numbers").innerHTML = currentGame.level
+    }
+}
 
 let obstaclesFrequency = 0;
 let obstaclesFrequency2 = 0;
@@ -112,12 +129,14 @@ let shotsFrequency = 0;
 function updateCanvas() {
         ctx.clearRect(0, 0, 700, 500);
         currentGame.archer.drawArcher();
+        
         if(currentGame.isGameRunning) {
 
             // WIN GAME 
-            if (currentGame.score === 20) {
+            if (currentGame.score === 40) { // -> SCORE TO WIN GAME 
                 winGame();
             }
+            
             // OBSTACLE 2 
             if (currentGame.score >= 2) {  
                 obstaclesFrequency2++;
@@ -128,7 +147,7 @@ function updateCanvas() {
                       currentGame.obstacles2.push(newObstacle2);
             }
             for(let i = 0; i < currentGame.obstacles2.length; i++) {
-                currentGame.obstacles2[i].x -= 0.6; // VELOCIDADE DOS INIMIGOS 2
+                currentGame.obstacles2[i].x -= 0.7; // VELOCIDADE DOS INIMIGOS 2
                 currentGame.obstacles2[i].drawObstacle2();
                 if (currentGame.obstacles2[i].x <= 0 || detectCollision(currentGame.obstacles2[i])) {
                     resetGame();    // STOPS AND RESTARTS THE GAME 
@@ -147,6 +166,7 @@ function updateCanvas() {
                             currentGame.archer.shots.splice(l, 1);
                             currentGame.score++;
                             document.getElementById("score").innerHTML = currentGame.score
+                            levelUp();
                     }
                 }
             } 
@@ -168,6 +188,7 @@ function updateCanvas() {
                             currentGame.archer.shots.splice(l, 1);
                             currentGame.score++;
                             document.getElementById("score").innerHTML = currentGame.score
+                            levelUp();
                     }
                 }
             } 
@@ -189,6 +210,7 @@ function updateCanvas() {
                 }
             } 
         }
+
 
 if(currentGame.isGameRunning) {     
     requestAnimationFrame(updateCanvas); // RUNS THE GAME

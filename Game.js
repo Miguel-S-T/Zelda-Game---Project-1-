@@ -5,6 +5,7 @@ class Game {
         this.obstacles2 = [];
         this.score = 0;
         this.isGameRunning = false;
+        this.level = 0;
     }
     
 }
