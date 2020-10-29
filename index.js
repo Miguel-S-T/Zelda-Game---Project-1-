@@ -124,6 +124,7 @@ function levelUp() {
 
 let obstaclesFrequency = 0;
 let obstaclesFrequency2 = 0;
+let obstaclesFrequency3 = 0;
 let shotsFrequency = 0;
 
 function updateCanvas() {
@@ -137,19 +138,57 @@ function updateCanvas() {
                 winGame();
             }
             
+            // OBSTACLE 3 
+            if (currentGame.score >= 3) {  
+                obstaclesFrequency3++;
+                if (obstaclesFrequency3 % 130 === 1) { // AQUI (% 100) MUDAMOS A QUANTIDADE DOS INIMIGOS
+                let randomObstacle3X = 700;
+                let randomObstacle3Y = Math.floor(Math.random() * 350);
+                let newObstacle3 = new Obstacle3(randomObstacle3X, randomObstacle3Y);
+                      currentGame.obstacles3.push(newObstacle3);
+            }
+            for(let i = 0; i < currentGame.obstacles3.length; i++) {
+                currentGame.obstacles3[i].x -= 0.4; // VELOCIDADE DOS INIMIGOS 2
+                currentGame.obstacles3[i].drawObstacle3();
+                if (currentGame.obstacles3[i].x <= 0 || detectCollision(currentGame.obstacles3[i])) { // COLLISION ARCHER WITH ENEMIES
+                    resetGame();    // STOPS AND RESTARTS THE GAME 
+                }
+                if (currentGame.obstacles3.length > 0 && currentGame.obstacles3[i].y >= 700) { // Obstacle moved outside the canvas
+                    currentGame.obstacles3.splice(i, 1); 
+                }
+            }  
+            }
+            if (currentGame.obstacles3.length > 0 && currentGame.archer.shots.length > 0) {
+                for(let k = 0; k < currentGame.obstacles3.length -1; k++){ // COLLISION SHOTS WITH ENEMIES // SEMPRE QUE QUISER INDEXAR ITEMS NO ARRAY QUE ESTÁS A UTILIZAR A PRÓPRIA LENGTH DELE NO FOR LOOP TEMOS QUE USAR O -1.
+                    for (let l = 0; l < currentGame.archer.shots.length; l++) {
+                       
+                         if (detectCollisionOfShots(currentGame.obstacles3[k], currentGame.archer.shots[l])) {
+                            currentGame.obstacles3[k].receiveDamage2();
+                            if(currentGame.obstacles3[k].health <= 0) {
+                                currentGame.obstacles3.splice(k, 1);
+                                currentGame.score++;
+                                document.getElementById("score").innerHTML = currentGame.score
+                                levelUp();
+                            }
+                            currentGame.archer.shots.splice(l, 1);
+                    }
+                }
+            } 
+            }
+
             // OBSTACLE 2 
             if (currentGame.score >= 2) {  
                 obstaclesFrequency2++;
-                if (obstaclesFrequency2 % 100 === 1) { // AQUI (% 100) MUDAMOS A QUANTIDADE DOS INIMIGOS
+                if (obstaclesFrequency2 % 110 === 1) { // AQUI (% 100) MUDAMOS A QUANTIDADE DOS INIMIGOS
                 let randomObstacle2X = 700;
-                let randomObstacle2Y = Math.floor(Math.random() * 450);
+                let randomObstacle2Y = Math.floor(Math.random() * 350);
                 let newObstacle2 = new Obstacle2(randomObstacle2X, randomObstacle2Y);
                       currentGame.obstacles2.push(newObstacle2);
             }
             for(let i = 0; i < currentGame.obstacles2.length; i++) {
-                currentGame.obstacles2[i].x -= 0.7; // VELOCIDADE DOS INIMIGOS 2
+                currentGame.obstacles2[i].x -= 0.5; // VELOCIDADE DOS INIMIGOS 2
                 currentGame.obstacles2[i].drawObstacle2();
-                if (currentGame.obstacles2[i].x <= 0 || detectCollision(currentGame.obstacles2[i])) {
+                if (currentGame.obstacles2[i].x <= 0 || detectCollision(currentGame.obstacles2[i])) { // COLLISION ARCHER WITH ENEMIES
                     resetGame();    // STOPS AND RESTARTS THE GAME 
                 }
                 if (currentGame.obstacles2.length > 0 && currentGame.obstacles2[i].y >= 700) { // Obstacle moved outside the canvas
@@ -162,11 +201,16 @@ function updateCanvas() {
                     for (let l = 0; l < currentGame.archer.shots.length; l++) {
                        
                          if (detectCollisionOfShots(currentGame.obstacles2[k], currentGame.archer.shots[l])) {
-                            currentGame.obstacles2.splice(k, 1);
+                            currentGame.obstacles2[k].receiveDamage();
+                            if(currentGame.obstacles2[k].health <= 0) {
+                                currentGame.obstacles2.splice(k, 1);
+                                currentGame.score++;
+                                document.getElementById("score").innerHTML = currentGame.score
+                                levelUp();
+                            }
                             currentGame.archer.shots.splice(l, 1);
-                            currentGame.score++;
-                            document.getElementById("score").innerHTML = currentGame.score
-                            levelUp();
+                           
+                            
                     }
                 }
             } 

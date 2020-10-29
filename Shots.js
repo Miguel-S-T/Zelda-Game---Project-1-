@@ -1,11 +1,12 @@
 class Shots {
-    constructor(x, y, speed) {
+    constructor(x, y) {
         this.x = x+40;
         this.y = y+15;
-        this.speed = speed;
+      //  this.damage = 1;
         this.width = 20;
         this.height = 20;
         this.img = "/img/shot-1 cut.png";
+       
     }
 drawShot() {
         const shotImg = new Image();
@@ -18,7 +19,7 @@ drawShot() {
     */
 }
 createShot() {
-    let newShoot = new Shots(currentArcher.x, currentArcher.y, this.speed);
+    let newShoot = new Shots(currentArcher.x, currentArcher.y, this.damage);
     return newShoot
 }
 
