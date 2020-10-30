@@ -2,11 +2,11 @@ class Archer {
     constructor() {
         this.x = 0;
         this.y = 0;
-        this.width = 42;
-        this.height = 42; 
-        this.img = "/img/archer_3_paço_left_p_tirar_fundo-removebg-preview.png";
+        this.width = 46;
+        this.height = 46; 
+        this.img = "/img/archer-3-left.png";
         this.animationToggle = 0;
-        this.img2 = "/img/archer_3_paço_right_p_tirar_fundo-removebg-preview.png";
+        this.img2 = "/img/archer-3-right.png";
         this.shots = [];
     }
     drawArcher() {
