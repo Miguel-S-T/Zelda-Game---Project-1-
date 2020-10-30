@@ -1,5 +1,25 @@
 let currentGame;
 let currentArcher;
+let introSong = new Audio ("/SOUNDS/Zelda - intro song 1.mp3")
+let gamePlayMusic = new Audio("/SOUNDS/Zelda - gameplay song 1.mp3")
+let gameOverSong = new Audio("/SOUNDS/Zelda - gameover song 1.mp3")
+let winnerSong = new Audio("/SOUNDS/Zelda - winner song 1.mp3")
+let linkShot = new Audio("/SOUNDS/Zelda - shot 2.wav")
+let enemyDead1 = new Audio("/SOUNDS/Zelda - enemy died 1.wav")
+let enemyDead2 = new Audio("/SOUNDS/Zelda - enemy died 2.wav")
+let enemyDead3 = new Audio("/SOUNDS/Zelda - enemy  big died 3.wav")
+let levelUpSong = new Audio("/SOUNDS/Zelda - level up .wav")
+
+
+/*document.addEventListener("mousemove", function(){
+    if (currentGame.isGameRunning === false 
+        && gamePlayMusic.play() === false 
+        && gameOverSong.play() === false
+        && winnerSong.play() === false ){
+        introSong.play();
+    }  
+})
+*/
 
 
 document.getElementById('game-board').style.display = "none";
@@ -14,6 +34,7 @@ document.getElementById('win-game-img').style.display = 'none';
 document.getElementById('instructions').style.display = 'none';
 document.getElementById('level-div').style.display = 'none';
 
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -27,6 +48,8 @@ document.getElementById('play-again2').onclick = () => { // RESTARTS GAME ON CLI
     startGame();
 }
 
+
+
 function winGame() {
     currentGame.archer = {};
     currentGame.obstacles = [];
@@ -34,6 +57,10 @@ function winGame() {
     currentGame.level = 0;
     currentGame.isGameRunning = false;
     obstaclesFrequency = 0;
+    introSong.pause();
+    gamePlayMusic.pause();
+    gameOverSong.pause();
+    winnerSong.play();
     document.getElementById('score').innerHTML = currentGame.score;
     document.getElementById('level-numbers').innerHTML = currentGame.level;
     document.getElementById('game-board').style.display = 'none';
@@ -57,6 +84,10 @@ function resetGame() {
     currentGame.level = 0;
     currentGame.isGameRunning = false;
     obstaclesFrequency = 0;
+    introSong.pause();
+    gamePlayMusic.pause();
+    gameOverSong.play();
+    winnerSong.pause();
     document.getElementById('score').innerHTML = currentGame.score;
     document.getElementById('level-numbers').innerHTML = currentGame.level;
     document.getElementById('game-board').style.display = 'none';
@@ -86,6 +117,10 @@ function startGame() {
     document.getElementById('win-game-img').style.display = 'none';
     document.getElementById('instructions').style.display = 'inline';
     document.getElementById('level-div').style.display = 'inline'; 
+    introSong.pause();
+    gamePlayMusic.play();
+    gameOverSong.pause();
+    winnerSong.pause();
     currentGame = new Game();
     currentGame.isGameRunning = true;
     currentArcher = new Archer();
@@ -118,6 +153,7 @@ function detectCollisionOfShots(obstacle, shot) {  // SHOTS COLLISION
 function levelUp() {
     if (currentGame.score % 5 === 0 && currentGame.score != 0) {
         currentGame.level++;
+        levelUpSong.play();
         document.getElementById("level-numbers").innerHTML = currentGame.level
     }
 }
@@ -166,6 +202,7 @@ function updateCanvas() {
                             currentGame.obstacles3[k].receiveDamage2();
                             if(currentGame.obstacles3[k].health <= 0) {
                                 currentGame.obstacles3.splice(k, 1);
+                                enemyDead3.play();
                                 currentGame.score++;
                                 document.getElementById("score").innerHTML = currentGame.score
                                 levelUp();
@@ -204,6 +241,7 @@ function updateCanvas() {
                             currentGame.obstacles2[k].receiveDamage();
                             if(currentGame.obstacles2[k].health <= 0) {
                                 currentGame.obstacles2.splice(k, 1);
+                                enemyDead2.play()
                                 currentGame.score++;
                                 document.getElementById("score").innerHTML = currentGame.score
                                 levelUp();
@@ -229,6 +267,7 @@ function updateCanvas() {
                     for (let l = 0; l < currentGame.archer.shots.length; l++) {   
                         if (detectCollisionOfShots(currentGame.obstacles[k], currentGame.archer.shots[l])) {
                             currentGame.obstacles.splice(k, 1);
+                            enemyDead1.play();
                             currentGame.archer.shots.splice(l, 1);
                             currentGame.score++;
                             document.getElementById("score").innerHTML = currentGame.score

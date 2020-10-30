@@ -58,6 +58,7 @@ class Archer {
           break;
           case 83: // shoot
             this.shoot();
+            linkShot.play();
           break;
         }
       }
