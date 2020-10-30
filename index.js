@@ -60,6 +60,7 @@ function winGame() {
     introSong.pause();
     gamePlayMusic.pause();
     gameOverSong.pause();
+    levelUpSong.play();
     winnerSong.play();
     document.getElementById('score').innerHTML = currentGame.score;
     document.getElementById('level-numbers').innerHTML = currentGame.level;
