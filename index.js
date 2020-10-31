@@ -171,7 +171,7 @@ function updateCanvas() {
         if(currentGame.isGameRunning) {
 
             // WIN GAME 
-            if (currentGame.score === 40) { // -> SCORE TO WIN GAME 
+            if (currentGame.score === 50) { // -> SCORE TO WIN GAME 
                 winGame();
             }
             
@@ -278,7 +278,7 @@ function updateCanvas() {
             } 
             }
             for(let i = 0; i < currentGame.obstacles.length; i++) {
-                currentGame.obstacles[i].x -= 0.6; // VELOCIDADE DOS INIMIGOS
+                currentGame.obstacles[i].x -= 0.7; // VELOCIDADE DOS INIMIGOS
                 currentGame.obstacles[i].drawObstacle();
                 if (currentGame.obstacles[i].x <= 0 || detectCollision(currentGame.obstacles[i])) {
                     resetGame();    // STOPS AND RESTARTS THE GAME 
